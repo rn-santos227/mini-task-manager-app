@@ -1,4 +1,4 @@
-import { registerService, loginService } from "./auth.service.js";
+import { registerService, loginService, logoutService } from "./auth.service.js";
 
 export async function register(req, res, next) {
   try {
@@ -20,6 +20,22 @@ export async function login(req, res, next) {
       success: true,
       user,
       token,
+    });
+  } catch (err) {
+    next(err);
+  }
+}
+
+export async function logout(req, res, next) {
+  try {
+    const header = req.headers.authorization;
+    const token = header.split(" ")[1];
+
+    const result = logoutService(token);
+
+    res.json({
+      success: true,
+      ...result,
     });
   } catch (err) {
     next(err);

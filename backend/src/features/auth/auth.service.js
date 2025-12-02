@@ -1,6 +1,8 @@
 import jwt from "jsonwebtoken";
 import User from "./user.model.js";
 
+import { blacklistToken } from "./helpers/tokenBlacklist.js";
+
 function generateToken(id) {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES,
@@ -25,3 +27,9 @@ export async function loginService({ email, password }) {
   const token = generateToken(user._id);
   return { user, token };
 }
+
+export function logoutService(token) {
+  blacklistToken(token);
+  return { message: "Logged out successfully" };
+}
+
