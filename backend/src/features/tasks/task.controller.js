@@ -47,3 +47,25 @@ export async function getTask(req, res, next) {
     next(err);
   }
 }
+
+export async function updateTask(req, res, next) {
+  try {
+    const task = await updateTaskService(
+      req.user._id,
+      req.params.id,
+      req.body
+    );
+
+    if (!task) {
+      return res.status(404).json({ success: false, message: "Task not found or inactive" });
+    }
+
+    res.json({
+      success: true,
+      message: "Task updated successfully",
+      task,
+    });
+  } catch (err) {
+    next(err);
+  }
+}
