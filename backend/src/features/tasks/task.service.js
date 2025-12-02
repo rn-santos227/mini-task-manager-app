@@ -14,3 +14,11 @@ export async function getTasksService(userId) {
 export async function getTaskService(userId, taskId) {
   return Task.findOne({ _id: taskId, user: userId });
 }
+
+export async function updateTaskService(userId, taskId, data) {
+  return Task.findOneAndUpdate(
+    { _id: taskId, user: userId },
+    data,
+    { new: true }
+  );
+}
