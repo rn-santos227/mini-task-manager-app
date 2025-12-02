@@ -6,3 +6,7 @@ export async function createTaskService(userId, data) {
     user: userId,
   });
 }
+
+export async function getTasksService(userId) {
+  return Task.find({ user: userId }).sort({ createdAt: -1 });
+}
