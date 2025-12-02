@@ -18,6 +18,7 @@ const TaskSchema = new mongoose.Schema(
     completed: { type: Boolean, default: false },
     startDate: { type: Date },
     endDate: { type: Date },
+    active: { type: Boolean }
   },
   { timestamps: true }
 );
