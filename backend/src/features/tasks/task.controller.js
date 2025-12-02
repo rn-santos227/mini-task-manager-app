@@ -18,3 +18,15 @@ export async function createTask(req, res, next) {
     next(err);
   }
 }
+
+export async function getTasks(req, res, next) {
+  try {
+    const tasks = await getTasksService(req.user._id);
+    res.json({
+      success: true,
+      tasks,
+    });
+  } catch (err) {
+    next(err);
+  }
+}
