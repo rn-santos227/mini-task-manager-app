@@ -1,4 +1,4 @@
-import Task from "./task.model";
+import Task from "./task.model.js";
 
 export async function createTaskService(userId, data) {
   return Task.create({

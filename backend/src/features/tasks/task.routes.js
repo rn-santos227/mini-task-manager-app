@@ -14,7 +14,7 @@ import {
 import {
   createTaskSchema,
   updateTaskSchema
-} from "./validations/task.validation.js";
+} from "./task.validations.js";
 
 const router = Router();
 router.use(authMiddleware);
