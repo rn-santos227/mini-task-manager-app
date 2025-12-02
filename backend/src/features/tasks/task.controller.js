@@ -30,3 +30,20 @@ export async function getTasks(req, res, next) {
     next(err);
   }
 }
+
+
+export async function getTask(req, res, next) {
+  try {
+    const task = await getTaskService(req.user._id, req.params.id);
+    if (!task) {
+      return res.status(404).json({ success: false, message: "Task not found" });
+    }
+
+    res.json({
+      success: true,
+      task,
+    });
+  } catch (err) {
+    next(err);
+  }
+}
