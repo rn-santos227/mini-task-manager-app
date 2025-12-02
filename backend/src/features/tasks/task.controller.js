@@ -69,3 +69,20 @@ export async function updateTask(req, res, next) {
     next(err);
   }
 }
+
+export async function deleteTask(req, res, next) {
+  try {
+    const task = await deleteTaskService(req.user._id, req.params.id);
+
+    if (!task) {
+      return res.status(404).json({ success: false, message: "Task not found" });
+    }
+
+    res.json({
+      success: true,
+      message: "Task deactivated",
+    });
+  } catch (err) {
+    next(err);
+  }
+}
