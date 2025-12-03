@@ -6,6 +6,5 @@ export const API_ENDPOINTS = {
   },
   TASKS: {
     BASE: "/api/tasks",
-    BY_ID: (id) => `/api/tasks/${id}`,
   },
 };
