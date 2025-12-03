@@ -1,0 +1,7 @@
+.task-delete-body {
+  @apply text-gray-700 leading-relaxed;
+}
+
+.task-delete-name {
+  @apply font-semibold text-gray-900;
+}
