@@ -2,8 +2,17 @@ import { STORAGE_KEYS } from "../constants/storage";
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
+function getToken() {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEYS.TOKEN);
+    return stored ? JSON.parse(stored) : null;
+  } catch {
+    return localStorage.getItem(STORAGE_KEYS.TOKEN);
+  }
+}
+
 export async function apiService(endpoint, options = {}) {
-  const token = localStorage.getItem(STORAGE_KEYS.TOKEN);
+  const token = getToken();
 
   const config = {
     method: options.method || "GET",
