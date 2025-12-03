@@ -1,5 +1,5 @@
 import "./index.css";
-import { STATUS_PRESETS } from "../../constants/status";
+import { STATUS_PRESETS } from "@/constants/status";
 
 export default function Toast({ id, status, message, onClose }) {
   const preset = STATUS_PRESETS[status] || STATUS_PRESETS.INFORMATION;

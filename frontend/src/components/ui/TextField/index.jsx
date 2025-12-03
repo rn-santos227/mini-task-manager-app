@@ -1,5 +1,5 @@
 import "./index.css";
-import { TEXT_TYPES } from "../../constants/texts";
+import { TEXT_TYPES } from "@/constants/texts";
 
 export default function TextField({
   label,

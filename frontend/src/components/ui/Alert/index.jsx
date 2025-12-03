@@ -1,5 +1,5 @@
 import "./index.css";
-import { STATUS_PRESETS } from "../../constants/status";
+import { STATUS_PRESETS } from "@/constants/status";
 
 export default function Alert({
   status,

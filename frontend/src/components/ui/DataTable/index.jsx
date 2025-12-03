@@ -1,5 +1,5 @@
 import "./index.css";
-import { Spinner } from "../Spinner";
+import Spinner from "../Spinner";
 
 export default function DataTable({
   columns = [],
