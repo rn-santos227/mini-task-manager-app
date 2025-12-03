@@ -29,8 +29,14 @@ export async function login(req, res, next) {
 export async function logout(req, res, next) {
   try {
     const header = req.headers.authorization;
-    const token = header.split(" ")[1];
+    if (!header || !header.startsWith("Bearer ")) {
+      return res.status(400).json({
+        success: false,
+        message: "Authorization header is required",
+      });
+    }
 
+    const token = header.split(" ")[1];
     const result = logoutService(token);
 
     res.json({

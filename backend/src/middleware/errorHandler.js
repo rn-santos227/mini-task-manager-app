@@ -1,8 +1,23 @@
 export default (err, req, res, next) => {
-  console.error("Error:", err.message);
+  const status = err.statusCode || deriveStatusCode(err) || 500;
+  const message = err.message || "Something went wrong";
 
-  res.status(500).json({
+  console.error("Error:", message);
+
+  res.status(status).json({
     success: false,
-    message: err.message,
+    message,
   });
 };
+
+function deriveStatusCode(err) {
+  if (err.name === "CastError") {
+    return 400;
+  }
+
+  if (err.code === 11000) {
+    return 400;
+  }
+
+  return null;
+}
