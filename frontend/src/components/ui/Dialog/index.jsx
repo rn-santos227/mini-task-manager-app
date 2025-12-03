@@ -1,18 +1,20 @@
 import "./index.css";
-import { STATUS_PRESETS } from "@/constants/status";
+import { STATUS_PRESETS, STATUS_TYPES } from "@/constants/status";
 
 export default function Dialog({
   open,
-  status,
+  status = STATUS_TYPES.INFORMATION,
   title,
   children,
-  footer,
   onClose,
+  onConfirm,
+  confirmText = "Yes",
+  cancelText = "Cancel",
 }) {
   if (!open) return null;
 
   const preset = STATUS_PRESETS[status] || STATUS_PRESETS.INFORMATION;
-
+  const isQuestion = status === STATUS_TYPES.QUESTION;
   return (
     <div className="ui-dialog-backdrop" onClick={onClose}>
       <div
@@ -36,10 +38,23 @@ export default function Dialog({
           {children}
         </div>
 
-        {/* FOOTER */}
-        <div className="ui-dialog-footer">
-          {footer ? (
-            footer
+        <div className="ui-dialog-footer flex justify-end gap-3">
+          {isQuestion ? (
+            <>
+              <button
+                onClick={onClose}
+                className="ui-dialog-cancel-btn"
+              >
+                {cancelText}
+              </button>
+
+              <button
+                onClick={onConfirm}
+                className={`ui-dialog-confirm-btn bg-${preset.color}-600 text-white px-4 py-2 rounded`}
+              >
+                {confirmText}
+              </button>
+            </>
           ) : (
             <button onClick={onClose} className="ui-dialog-close-btn">
               Close

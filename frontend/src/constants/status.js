@@ -1,10 +1,17 @@
-import { InfoIcon, SuccessIcon, WarningIcon, ErrorIcon } from "../components/icons";
+import {
+  InfoIcon,
+  SuccessIcon,
+  WarningIcon,
+  ErrorIcon,
+  QuestionIcon,
+} from "../components/ui/icons";
 
 export const STATUS_TYPES = {
   SUCCESS: "success",
   ERROR: "error",
   WARNING: "warning",
-  INFORMATION: "information",
+  INFO: "info",
+  QUESTION: "question",
 };
 
 export const STATUS_PRESETS = {
@@ -23,9 +30,14 @@ export const STATUS_PRESETS = {
     title: "Warning",
     icon: WarningIcon,
   },
-  [STATUS_TYPES.INFORMATION]: {
+  [STATUS_TYPES.INFO]: {
     color: "blue",
     title: "Information",
     icon: InfoIcon,
+  },
+  [STATUS_TYPES.QUESTION]: {
+    color: "blue",
+    title: "Confirmation",
+    icon: QuestionIcon,
   },
 };
