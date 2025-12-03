@@ -1,30 +1,30 @@
 import { apiService } from "@/services/apiService";
-import TASKS from  "@/constants/endpoints";
+import { API_ENDPOINTS } from "@/constants/endpoints";
 
 export function getTasks() {
-  return apiService(TASKS.BASE);
+  return apiService(API_ENDPOINTS.API_ENDPOINTS.TASKS.BASE);
 }
 
 export function getTask(id) {
-  return apiService(`${TASKS.BASE}/${id}`);
+  return apiService(`${API_ENDPOINTS.TASKS.BASE}/${id}`);
 }
 
 export function createTask(payload) {
-  return apiService(TASKS.BASE, {
+  return apiService(API_ENDPOINTS.TASKS.BASE, {
     method: "POST",
     body: payload,
   });
 }
 
 export function updateTask(id, payload) {
-  return apiService(`${TASKS.BASE}/${id}`, {
+  return apiService(`${API_ENDPOINTS.TASKS.BASE}/${id}`, {
     method: "PUT",
     body: payload,
   });
 }
 
 export function deleteTask(id) {
-  return apiService(`${TASKS.BASE}/${id}`, {
+  return apiService(`${API_ENDPOINTS.TASKS.BASE}/${id}`, {
     method: "DELETE",
   });
 }

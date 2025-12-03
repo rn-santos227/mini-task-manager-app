@@ -1,0 +1,39 @@
+.task-page {
+  @apply space-y-6;
+}
+
+.task-page-header {
+  @apply flex flex-col md:flex-row md:items-center md:justify-between gap-3;
+}
+
+.task-page-title {
+  @apply text-2xl font-semibold text-gray-900;
+}
+
+.task-page-subtitle {
+  @apply text-gray-600;
+}
+
+.task-table-card {
+  @apply shadow-sm;
+}
+
+.task-desc {
+  @apply line-clamp-2 text-gray-700;
+}
+
+.task-status {
+  @apply inline-flex px-3 py-1 rounded-full text-sm font-medium;
+}
+
+.task-status-completed {
+  @apply bg-green-100 text-green-700;
+}
+
+.task-status-pending {
+  @apply bg-yellow-100 text-yellow-700;
+}
+
+.task-actions {
+  @apply flex items-center gap-2;
+}
