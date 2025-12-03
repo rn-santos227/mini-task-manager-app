@@ -3,21 +3,12 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./styles/globals.css";
 
-import DialogProvider from "./providers/DialogProvider";
-import AlertProvider from "./providers/AlertProvider";
-import NotificationProvider from "./providers/NotificationProvider";
-import ModalProvider from "./providers/ModalProvider";
+import UIProvider from "./providers/UIProvider";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <DialogProvider>
-      <AlertProvider>
-        <NotificationProvider>
-          <ModalProvider>
-            <App />
-          </ModalProvider>
-        </NotificationProvider>
-      </AlertProvider>
-    </DialogProvider>
+    <UIProvider>
+      <App />
+    </UIProvider>
   </React.StrictMode>
 );

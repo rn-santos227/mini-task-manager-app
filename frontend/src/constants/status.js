@@ -4,7 +4,7 @@ import {
   WarningIcon,
   ErrorIcon,
   QuestionIcon,
-} from "../components/ui/icons";
+} from "../components/icons";
 
 export const STATUS_TYPES = {
   SUCCESS: "success",
