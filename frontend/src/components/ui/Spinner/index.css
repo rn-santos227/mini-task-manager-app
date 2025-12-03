@@ -1,0 +1,19 @@
+.ui-spinner {
+  @apply border-4 border-solid border-gray-300 border-t-blue-600 rounded-full animate-spin;
+}
+
+.ui-spinner-sm {
+  @apply w-5 h-5 border-2;
+}
+
+.ui-spinner-md {
+  @apply w-8 h-8;
+}
+
+.ui-spinner-lg {
+  @apply w-12 h-12 border-4;
+}
+
+.ui-spinner-fullscreen {
+  @apply fixed inset-0 flex items-center justify-center bg-black/20 z-50;
+}

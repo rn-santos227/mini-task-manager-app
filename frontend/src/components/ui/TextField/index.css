@@ -1,0 +1,36 @@
+.ui-textfield {
+  @apply flex flex-col gap-1;
+}
+
+.ui-textfield-label {
+  @apply text-sm font-medium text-gray-700;
+}
+
+.ui-textfield-wrapper {
+  @apply flex items-center gap-2 border rounded px-3 py-2 bg-white
+         focus-within:ring focus-within:ring-blue-300 transition;
+}
+
+.ui-textfield-error {
+  @apply border-red-500 focus-within:ring-red-300;
+}
+
+.ui-textfield-input {
+  @apply flex-1 outline-none text-gray-800;
+}
+
+.ui-textfield-icon-left {
+  @apply text-gray-500;
+}
+
+.ui-textfield-icon-right {
+  @apply text-gray-500;
+}
+
+.ui-textfield-helper {
+  @apply text-xs text-gray-500;
+}
+
+.ui-textfield-error-text {
+  @apply text-xs text-red-600 font-medium;
+}

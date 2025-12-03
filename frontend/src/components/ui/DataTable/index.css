@@ -1,0 +1,28 @@
+.ui-table-container {
+  @apply w-full overflow-x-auto border rounded-md bg-white shadow-sm;
+}
+
+.ui-table {
+  @apply min-w-full border-collapse;
+}
+
+.ui-table thead th {
+  @apply bg-gray-100 px-4 py-2 text-left text-sm font-semibold
+         border-b text-gray-700;
+}
+
+.ui-table tbody td {
+  @apply px-4 py-2 text-sm border-b;
+}
+
+.ui-table tbody tr:hover {
+  @apply bg-gray-50;
+}
+
+.ui-table-empty {
+  @apply py-6 text-center text-gray-500;
+}
+
+.ui-table-loading {
+  @apply flex items-center justify-center gap-2 py-6 text-gray-600;
+}

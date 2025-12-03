@@ -1,0 +1,47 @@
+.ui-toast {
+  @apply flex items-center gap-3 px-4 py-3 rounded shadow-lg border 
+         text-sm relative animate-slide-in;
+}
+
+.ui-toast-icon {
+  @apply w-6 h-6 flex-shrink-0;
+}
+
+.ui-toast-message {
+  @apply flex-1 text-sm font-medium;
+}
+
+.ui-toast-close {
+  @apply text-gray-600 hover:text-gray-800 transition;
+}
+
+.ui-toast-green {
+  @apply bg-green-50 text-green-700 border-green-300;
+}
+
+.ui-toast-red {
+  @apply bg-red-50 text-red-700 border-red-300;
+}
+
+.ui-toast-yellow {
+  @apply bg-yellow-50 text-yellow-700 border-yellow-300;
+}
+
+.ui-toast-blue {
+  @apply bg-blue-50 text-blue-700 border-blue-300;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.25s ease-out;
+}

@@ -1,0 +1,24 @@
+.ui-modal-backdrop {
+  @apply fixed inset-0 bg-black/40 flex items-center justify-center 
+         z-50;
+}
+
+.ui-modal-container {
+  @apply bg-white rounded shadow-xl p-6 overflow-auto max-h-[90vh];
+}
+
+.ui-modal-sm {
+  @apply w-full max-w-sm;
+}
+
+.ui-modal-md {
+  @apply w-full max-w-md;
+}
+
+.ui-modal-lg {
+  @apply w-full max-w-2xl;
+}
+
+.ui-modal-xl {
+  @apply w-full max-w-4xl;
+}

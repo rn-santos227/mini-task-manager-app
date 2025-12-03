@@ -1,0 +1,35 @@
+.ui-alert {
+  @apply flex items-start gap-3 p-3 rounded border text-sm shadow-sm;
+}
+
+.ui-alert-icon {
+  @apply w-6 h-6 flex-shrink-0;
+}
+
+.ui-alert-text {
+  @apply flex flex-col leading-tight;
+}
+
+.ui-alert-title {
+  @apply font-semibold;
+}
+
+.ui-alert-message {
+  @apply text-sm;
+}
+
+.ui-alert-green {
+  @apply bg-green-50 text-green-700 border-green-300;
+}
+
+.ui-alert-red {
+  @apply bg-red-50 text-red-700 border-red-300;
+}
+
+.ui-alert-yellow {
+  @apply bg-yellow-50 text-yellow-700 border-yellow-300;
+}
+
+.ui-alert-blue {
+  @apply bg-blue-50 text-blue-700 border-blue-300;
+}

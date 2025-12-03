@@ -1,0 +1,20 @@
+.ui-card {
+  @apply bg-white rounded shadow border border-gray-200 overflow-hidden;
+}
+
+.ui-card-header {
+  @apply px-4 py-3 border-b border-gray-200 bg-gray-50;
+}
+
+.ui-card-title {
+  @apply text-lg font-semibold text-gray-800;
+}
+
+.ui-card-body {
+  @apply px-4 py-4;
+}
+
+.ui-card-footer {
+  @apply px-4 py-3 border-t border-gray-200 bg-gray-50 
+         flex items-center justify-end gap-2;
+}
