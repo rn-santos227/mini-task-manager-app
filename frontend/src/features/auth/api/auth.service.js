@@ -24,3 +24,13 @@ export async function login(payload) {
   }
 }
 
+export async function register(payload) {
+  try {
+    const response = await registerRequest(payload);
+    const data = transformAuthResponse(response);
+    return buildSuccess(data, response?.message || "Registered successfully");
+  } catch (error) {
+    return buildError(error);
+  }
+}
+
