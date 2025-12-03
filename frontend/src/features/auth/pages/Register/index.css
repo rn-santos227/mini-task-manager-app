@@ -1,0 +1,27 @@
+.reg-page {
+  @apply w-full flex justify-center;
+}
+
+.reg-form {
+  @apply space-y-4
+}
+
+.reg-card {
+  @apply w-full max-w-md shadow-lg;
+}
+
+.reg-footer {
+  @apply text-sm text-center text-gray-600;
+}
+
+.reg-link {
+  @apply text-blue-600 hover:underline;
+}
+
+.reg-button {
+  @apply w-full mt-5
+}
+
+.reg-error {
+  @apply text-sm text-red-600;
+}
