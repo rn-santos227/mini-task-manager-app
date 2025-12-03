@@ -18,20 +18,20 @@ export default function Register() {
   };
 
   return (
-    <div className="auth-page">
+    <div className="reg-page">
       <Card
-        className="auth-card"
+        className="reg-card"
         title="Create an account"
         footer={
-          <div className="auth-footer">
+          <div className="reg-footer">
             Already have an account? {" "}
-            <Link className="auth-link" to={ROUTES.LOGIN}>
+            <Link className="reg-link" to={ROUTES.LOGIN}>
               Login
             </Link>
           </div>
         }
       >
-        <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+        <form className="reg-form" onSubmit={handleSubmit(onSubmit)}>
           <TextField
             label="Name"
             placeholder="John Doe"
@@ -61,9 +61,9 @@ export default function Register() {
             required
           />
 
-          {error && <p className="auth-error">{error}</p>}
+          {error && <p className="reg-error">{error}</p>}
 
-          <Button type="submit" className="w-full" disabled={loading}>
+          <Button type="submit" className="reg-button" disabled={loading}>
             {loading ? "Creating account..." : "Register"}
           </Button>
         </form>

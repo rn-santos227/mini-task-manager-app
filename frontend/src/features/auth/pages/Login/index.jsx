@@ -30,7 +30,7 @@ export default function Login() {
           </div>
         }
       >
-        <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+        <form className="auth-form" onSubmit={handleSubmit(onSubmit)}>
           <TextField
             label="Email"
             type="email"
@@ -53,7 +53,7 @@ export default function Login() {
 
           {error && <p className="auth-error">{error}</p>}
 
-          <Button type="submit" className="w-full" disabled={loading}>
+          <Button type="submit" className="auth-button" disabled={loading}>
             {loading ? "Signing in..." : "Login"}
           </Button>
         </form>

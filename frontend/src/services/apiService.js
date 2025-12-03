@@ -1,6 +1,10 @@
 import { STORAGE_KEYS } from "../constants/storage";
 
-const BASE_URL = import.meta.env.VITE_API_URL;
+const BASE_URL = (() => {
+  const raw = import.meta.env.VITE_API_URL || "";
+  const withProtocol = raw.replace(/^(https?):\/(?!\/)/, "$1://");
+  return withProtocol.replace(/\/+$/, "");
+})();
 
 function getToken() {
   try {

@@ -1,5 +1,5 @@
 import "./index.css";
-import LogoutButton from "@/modules/auth/components/LogoutButton";
+import LogoutButton from "@/features/auth/components/LogoutButton";
 
 export default function AppLayout({ children }) {
   return (

@@ -1,19 +1,27 @@
-.auth-page {
+.reg-page {
   @apply w-full flex justify-center;
 }
 
-.auth-card {
+.reg-form {
+  @apply space-y-4
+}
+
+.reg-card {
   @apply w-full max-w-md shadow-lg;
 }
 
-.auth-footer {
+.reg-footer {
   @apply text-sm text-center text-gray-600;
 }
 
-.auth-link {
+.reg-link {
   @apply text-blue-600 hover:underline;
 }
 
-.auth-error {
+.reg-button {
+  @apply w-full mt-5
+}
+
+.reg-error {
   @apply text-sm text-red-600;
 }

@@ -1,11 +1,11 @@
 export const API_ENDPOINTS = {
   AUTH: {
-    LOGIN: "/auth/login",
-    REGISTER: "/auth/register",
-    LOGOUT: "/auth/logout",
+    LOGIN: "/api/auth/login",
+    REGISTER: "/api/auth/register",
+    LOGOUT: "/api/auth/logout",
   },
   TASKS: {
-    BASE: "/tasks",
-    BY_ID: (id) => `/tasks/${id}`,
+    BASE: "/api/tasks",
+    BY_ID: (id) => `/api/tasks/${id}`,
   },
 };

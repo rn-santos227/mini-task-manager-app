@@ -1,4 +1,4 @@
-export default function TaskList() {
+export default function Tasks() {
   return (
     <div className="space-y-2">
       <h2 className="text-lg font-semibold">Tasks</h2>

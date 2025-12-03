@@ -1,8 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ROUTES } from "../constants/routes";
-
-import AuthLayout from "../layouts/AuthLayout";
-import MainLayout from "../layouts/MainLayout";
+import { ROUTES } from "@/constants/routes";
+import AuthLayout from "@/layouts/AuthLayout";
+import AppLayout from "@/layouts/AppLayout";
+import Login from "@/features/auth/pages/Login";
+import Register from "@/features/auth/pages/Register";
+import ProtectedRoute from "@/features/auth/ProtectedRoute";
+import Tasks from "@/features/tasks/pages/Tasks";
 
 export default function AppRouter() {
   return (
@@ -12,7 +15,7 @@ export default function AppRouter() {
           path={ROUTES.LOGIN}
           element={
             <AuthLayout>
-              <div>Login Page</div>
+              <Login />
             </AuthLayout>
           }
         />
@@ -21,7 +24,7 @@ export default function AppRouter() {
           path={ROUTES.REGISTER}
           element={
             <AuthLayout>
-              <div>Register Page</div>
+              <Register />
             </AuthLayout>
           }
         />
@@ -29,27 +32,11 @@ export default function AppRouter() {
         <Route
           path={ROUTES.TASKS}
           element={
-            <MainLayout>
-              <div>Task List</div>
-            </MainLayout>
-          }
-        />
-
-        <Route
-          path={ROUTES.TASK_CREATE}
-          element={
-            <MainLayout>
-              <div>Create Task</div>
-            </MainLayout>
-          }
-        />
-
-        <Route
-          path={ROUTES.TASK_EDIT(":id")}
-          element={
-            <MainLayout>
-              <div>Edit Task</div>
-            </MainLayout>
+            <ProtectedRoute>
+              <AppLayout>
+                <Tasks />
+              </AppLayout>
+            </ProtectedRoute>
           }
         />
       </Routes>

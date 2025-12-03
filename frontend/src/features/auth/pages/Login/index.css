@@ -2,6 +2,10 @@
   @apply w-full flex justify-center;
 }
 
+.auth-form {
+  @apply space-y-4
+}
+
 .auth-card {
   @apply w-full max-w-md shadow-lg;
 }
@@ -12,6 +16,10 @@
 
 .auth-link {
   @apply text-blue-600 hover:underline;
+}
+
+.auth-button {
+  @apply w-full my-2
 }
 
 .auth-error {
