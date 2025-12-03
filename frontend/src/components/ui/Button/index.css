@@ -1,0 +1,50 @@
+.ui-btn {
+  @apply inline-flex items-center justify-center gap-2 font-medium 
+         rounded transition focus:outline-none disabled:opacity-50 
+         disabled:cursor-not-allowed;
+}
+
+.ui-btn-sm {
+  @apply px-3 py-1.5 text-sm;
+}
+
+.ui-btn-md {
+  @apply px-4 py-2 text-base;
+}
+
+.ui-btn-lg {
+  @apply px-5 py-3 text-lg;
+}
+
+.ui-btn-primary {
+  @apply bg-blue-600 text-white hover:bg-blue-700;
+}
+
+.ui-btn-secondary {
+  @apply bg-gray-200 text-gray-800 hover:bg-gray-300;
+}
+
+.ui-btn-danger {
+  @apply bg-red-600 text-white hover:bg-red-700;
+}
+
+.ui-btn-outline {
+  @apply border border-gray-400 text-gray-800 hover:bg-gray-100;
+}
+
+.ui-btn-ghost {
+  @apply text-gray-700 hover:bg-gray-100;
+}
+
+.ui-btn-icon-left,
+.ui-btn-icon-right {
+  @apply inline-flex items-center;
+}
+
+.ui-btn-icon-left {
+  @apply mr-2;
+}
+
+.ui-btn-icon-right {
+  @apply ml-2;
+}

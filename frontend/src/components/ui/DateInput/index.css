@@ -1,0 +1,22 @@
+.ui-date-input {
+  @apply flex flex-col gap-1 w-full;
+}
+
+.ui-date-label {
+  @apply text-sm font-medium text-gray-700;
+}
+
+.ui-date-field {
+  @apply border border-gray-300 rounded px-3 py-2 
+         text-gray-800 bg-white focus:outline-none
+         focus:ring-2 focus:ring-blue-500 
+         transition;
+}
+
+.ui-date-error {
+  @apply border-red-500 focus:ring-red-400;
+}
+
+.ui-date-error-text {
+  @apply text-xs text-red-500;
+}
