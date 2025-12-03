@@ -34,3 +34,11 @@ export async function register(payload) {
   }
 }
 
+export async function logout() {
+  try {
+    const response = await logoutRequest();
+    return buildSuccess(transformAuthResponse(response), response?.message);
+  } catch (error) {
+    return buildError(error);
+  }
+}
