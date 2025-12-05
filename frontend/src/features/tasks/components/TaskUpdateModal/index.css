@@ -41,3 +41,11 @@
 .task-modal-error {
   @apply text-sm text-red-600;
 }
+
+.task-modal-title-field {
+  @apply w-full
+}
+
+.task-modal-desc-field {
+  @apply mt-5 w-full
+}

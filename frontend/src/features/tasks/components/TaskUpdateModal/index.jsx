@@ -1,13 +1,34 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import "./index.css";
 import { Button, Card, DateInput, Modal, TextArea, TextField } from "@/components/ui";
 import useTaskForm, { taskFormDefaults } from "../../hooks/useTaskForm";
 
 export default function TaskUpdateModal({ open, task, onClose, onSubmit }) {
-  const initialForm = useMemo(() => ({ ...taskFormDefaults, ...task }), [task]);
+  const normalizeDateValue = (value) => {
+    if (!value) return "";
+    const date = new Date(value);
+    if (Number.isNaN(date)) return "";
+    return date.toISOString().split("T")[0];
+  };
 
-  const { form, errors, submitting, isValid, handleChange, submit, setErrors } =
+  const initialForm = useMemo(
+    () => ({
+      ...taskFormDefaults,
+      title: task?.title ?? taskFormDefaults.title,
+      description: task?.description ?? taskFormDefaults.description,
+      startDate: normalizeDateValue(task?.startDate),
+      endDate: normalizeDateValue(task?.endDate),
+      completed: Boolean(task?.completed),
+    }),
+    [task]
+  );
+
+  const { form, errors, submitting, isValid, handleChange, submit, setErrors, reset } =
     useTaskForm(initialForm);
+
+  useEffect(() => {
+    reset(initialForm);
+  }, [initialForm, reset]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,7 +37,14 @@ export default function TaskUpdateModal({ open, task, onClose, onSubmit }) {
       return;
     }
 
-    const response = await submit((payload) => onSubmit?.(task.id, payload));
+    const response = await submit((payload) => {
+      const status = payload.completed
+        ? "completed"
+        : payload.endDate && new Date(payload.endDate) < new Date()
+          ? "overdue"
+          : "pending";
+      return onSubmit?.(task.id, { ...payload, status });
+    });
 
     if (response?.success) {
       onClose?.();
@@ -39,36 +67,36 @@ export default function TaskUpdateModal({ open, task, onClose, onSubmit }) {
         </div>
 
         <form className="task-modal-form" onSubmit={handleSubmit}>
-          <div className="task-modal-grid">
-            <TextField
-              label="Title"
-              value={form.title}
-              onChange={(e) => handleChange("title", e.target.value)}
-              error={errors.title}
-              required
-              fullWidth
-            />
+          <TextField
+            label="Title"
+            className="task-modal-title-field"
+            value={form.title}
+            onChange={(e) => handleChange("title", e.target.value)}
+            error={errors.title}
+            required
+            fullWidth
+          />
 
-            <div className="task-modal-row">
-              <DateInput
-                label="Start Date"
-                value={form.startDate}
-                onChange={(value) => handleChange("startDate", value)}
-                error={errors.startDate}
-                required
-              />
-              <DateInput
-                label="End Date"
-                value={form.endDate}
-                onChange={(value) => handleChange("endDate", value)}
-                error={errors.endDate}
-                required
-              />
-            </div>
+          <div className="task-modal-row">
+            <DateInput
+              label="Start Date"
+              value={form.startDate}
+              onChange={(value) => handleChange("startDate", value)}
+              error={errors.startDate}
+              required
+            />
+            <DateInput
+              label="End Date"
+              value={form.endDate}
+              onChange={(value) => handleChange("endDate", value)}
+              error={errors.endDate}
+              required
+            />
           </div>
 
           <TextArea
             label="Description"
+            className="task-modal-desc-field"
             value={form.description}
             onChange={(e) => handleChange("description", e.target.value)}
             error={errors.description}

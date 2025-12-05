@@ -4,11 +4,22 @@ import { UIContext } from "./context";
 import "./index.css";
 
 export default function UIProvider({ children }) {
-  const [alert, setAlert] = useState(null);
-  const showAlert = useCallback((status, message, duration = 3000) => {
-    setAlert({ status, message });
-    if (duration) setTimeout(() => setAlert(null), duration);
+  const [alerts, setAlerts] = useState([]);
+  const removeAlert = useCallback((id) => {
+    setAlerts((prev) => prev.filter((alert) => alert.id !== id));
   }, []);
+
+  const showAlert = useCallback(
+    (status, message, duration = 3000) => {
+      const id = Date.now();
+      setAlerts((prev) => [...prev, { id, status, message }]);
+
+      if (duration) {
+        setTimeout(() => removeAlert(id), duration);
+      }
+    },
+    [removeAlert]
+  );
 
   const [dialog, setDialog] = useState({
     open: false,
@@ -58,7 +69,13 @@ export default function UIProvider({ children }) {
       {children}
 
       <div className="ui-provider-alert-root">
-        {alert && <Alert status={alert.status} message={alert.message} />}
+        {alerts.map((alert) => (
+          <Alert
+            key={alert.id}
+            status={alert.status}
+            message={alert.message}
+          />
+        ))}
       </div>
 
       {dialog.open && (

@@ -2,7 +2,7 @@ import { apiService } from "@/services/apiService";
 import { API_ENDPOINTS } from "@/constants/endpoints";
 
 export function getTasks() {
-  return apiService(API_ENDPOINTS.API_ENDPOINTS.TASKS.BASE);
+  return apiService(API_ENDPOINTS.TASKS.BASE);
 }
 
 export function getTask(id) {

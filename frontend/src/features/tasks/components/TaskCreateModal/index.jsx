@@ -8,7 +8,10 @@ export default function TaskCreateModal({ open, onClose, onSubmit }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await submit(onSubmit);
+    const response = await submit((payload) => {
+      const status = payload.completed ? "completed" : "pending";
+      return onSubmit?.({ ...payload, status });
+    });
 
     if (response?.success) {
       onClose?.();
@@ -32,36 +35,36 @@ export default function TaskCreateModal({ open, onClose, onSubmit }) {
         </div>
 
         <form className="task-modal-form" onSubmit={handleSubmit}>
-          <div className="task-modal-grid">
-            <TextField
-              label="Title"
-              value={form.title}
-              onChange={(e) => handleChange("title", e.target.value)}
-              error={errors.title}
-              required
-              fullWidth
-            />
+          <TextField
+            label="Title"
+            className="task-modal-title-field"
+            value={form.title}
+            onChange={(e) => handleChange("title", e.target.value)}
+            error={errors.title}
+            required
+            fullWidth
+          />
 
-            <div className="task-modal-row">
-              <DateInput
-                label="Start Date"
-                value={form.startDate}
-                onChange={(value) => handleChange("startDate", value)}
-                error={errors.startDate}
-                required
-              />
-              <DateInput
-                label="End Date"
-                value={form.endDate}
-                onChange={(value) => handleChange("endDate", value)}
-                error={errors.endDate}
-                required
-              />
-            </div>
+          <div className="task-modal-row">
+            <DateInput
+              label="Start Date"
+              value={form.startDate}
+              onChange={(value) => handleChange("startDate", value)}
+              error={errors.startDate}
+              required
+            />
+            <DateInput
+              label="End Date"
+              value={form.endDate}
+              onChange={(value) => handleChange("endDate", value)}
+              error={errors.endDate}
+              required
+            />
           </div>
 
           <TextArea
             label="Description"
+            className="task-modal-desc-field"
             value={form.description}
             onChange={(e) => handleChange("description", e.target.value)}
             error={errors.description}

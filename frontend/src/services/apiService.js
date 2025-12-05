@@ -8,7 +8,7 @@ const BASE_URL = (() => {
 
 function getToken() {
   try {
-    const stored = localStorage.getItem(STORAGE_KEYS.TOKEN);
+  const stored = localStorage.getItem(STORAGE_KEYS.TOKEN);
     return stored ? JSON.parse(stored) : null;
   } catch {
     return localStorage.getItem(STORAGE_KEYS.TOKEN);

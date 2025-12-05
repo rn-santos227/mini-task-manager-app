@@ -2,11 +2,12 @@ import { registerService, loginService, logoutService } from "./auth.service.js"
 
 export async function register(req, res, next) {
   try {
-    const user = await registerService(req.body);
+    const { user, token } = await registerService(req.body);
     res.json({
       success: true,
       message: "User registered successfully",
       user,
+      token,
     });
   } catch (err) {
     next(err);

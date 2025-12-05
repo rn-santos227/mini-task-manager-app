@@ -1,10 +1,12 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState, useRef } from "react";
 import "./index.css";
 import { Button, Card, DataTable } from "@/components/ui";
+import { formatDateTime } from "@/utils/date";
 import TaskCreateModal from "../../components/TaskCreateModal";
 import TaskUpdateModal from "../../components/TaskUpdateModal";
 import TaskDeleteModal from "../../components/TaskDeleteModal";
 import useTasks from "../../hooks/useTasks";
+import useOverdueTaskAlerts from "../../hooks/useOverdueTaskAlerts";
 
 export default function TaskPage() {
   const {
@@ -21,10 +23,32 @@ export default function TaskPage() {
   const [openCreate, setOpenCreate] = useState(false);
   const [openUpdate, setOpenUpdate] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(20);
+  const [isRunning, setIsRunning] = useState(true);
+
+  const intervalRef = useRef(null);
 
   useEffect(() => {
     listTasks();
   }, [listTasks]);
+
+  useOverdueTaskAlerts(tasks, updateTask);
+
+  useEffect(() => {    
+    if (!isRunning) return;
+    intervalRef.current = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(intervalRef.current);
+          intervalRef.current = null;
+          setIsRunning(false);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    return () => clearInterval(intervalRef.current);
+  }, [isRunning]);
 
   const handleEdit = useCallback(
     (task) => {
@@ -50,18 +74,32 @@ export default function TaskPage() {
         label: "Description",
         render: (value) => <span className="task-desc">{value}</span>,
       },
-      { key: "startDate", label: "Start Date" },
-      { key: "endDate", label: "End Date" },
+      {
+        key: "startDate",
+        label: "Start Date",
+        render: (value) => formatDateTime(value),
+      },
+      {
+        key: "endDate",
+        label: "End Date",
+        render: (value) => formatDateTime(value),
+      },
       {
         key: "completed",
         label: "Status",
-        render: (value) => (
-          <span
-            className={`task-status ${value ? "task-status-completed" : "task-status-pending"}`}
-          >
-            {value ? "Completed" : "Pending"}
-          </span>
-        ),
+        render: (_, row) => {
+          const status = row.status || (row.completed ? "completed" : "pending");
+          const statusLabel =
+            status === "completed" ? "Completed" : status === "overdue" ? "Overdue" : "Pending";
+          const statusClass =
+            status === "completed"
+              ? "task-status-completed"
+              : status === "overdue"
+                ? "task-status-overdue"
+                : "task-status-pending";
+
+          return <span className={`task-status ${statusClass}`}>{statusLabel}</span>;
+        },
       },
       {
         key: "actions",
@@ -98,7 +136,7 @@ export default function TaskPage() {
         <div>
           <h2 className="task-page-title">Tasks</h2>
           <p className="task-page-subtitle">
-            Manage your tasks with quick create, edit, and delete actions.
+            wait {timeLeft} seconds for the task to be completed.
           </p>
         </div>
         <Button onClick={() => setOpenCreate(true)}>Create Task</Button>

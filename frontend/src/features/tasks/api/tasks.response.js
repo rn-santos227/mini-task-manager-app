@@ -9,6 +9,7 @@ export function transformTask(task) {
     startDate = "",
     endDate = "",
     completed = false,
+    status = "pending",
     active = true,
   } = task;
 
@@ -19,6 +20,7 @@ export function transformTask(task) {
     startDate,
     endDate,
     completed,
+    status,
     active,
   };
 }

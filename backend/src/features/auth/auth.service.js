@@ -30,7 +30,10 @@ export async function registerService({ name, email, password }) {
   if (exists) throw new AppError("Email already in use", 400);
 
   const user = await User.create({ name, email, password });
-  return sanitizeUser(user);
+  const sanitizedUser = sanitizeUser(user);
+  const token = generateToken(user._id);
+
+  return { user: sanitizedUser, token };
 }
 
 export async function loginService({ email, password }) {

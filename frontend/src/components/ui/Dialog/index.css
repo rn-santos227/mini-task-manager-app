@@ -1,34 +1,36 @@
-/* BACKDROP */
 .ui-dialog-backdrop {
   @apply fixed inset-0 bg-black/40 flex items-center justify-center z-50;
 }
 
-/* CONTAINER */
 .ui-dialog-container {
   @apply bg-white rounded shadow-lg w-full max-w-md border-t-4
          overflow-hidden;
 }
 
-/* HEADER */
 .ui-dialog-header {
   @apply px-5 py-3 border-b border-gray-200 bg-gray-50;
+}
+
+.ui-dialog-icon {
+  @apply inline-flex items-center justify-center w-full;
+}
+
+.ui-dialog-icon svg {
+  @apply w-20 h-20;
 }
 
 .ui-dialog-title {
   @apply text-xl font-semibold;
 }
 
-/* BODY */
 .ui-dialog-body {
   @apply px-5 py-4 text-gray-800;
 }
 
-/* FOOTER */
 .ui-dialog-footer {
   @apply px-5 py-3 border-t bg-gray-50 flex justify-end gap-2;
 }
 
-/* Close Button */
 .ui-dialog-close-btn {
   @apply px-4 py-2 rounded bg-blue-600 text-white 
          hover:bg-blue-700 transition;

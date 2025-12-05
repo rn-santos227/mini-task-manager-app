@@ -15,25 +15,23 @@ export default function Dialog({
 
   const preset = STATUS_PRESETS[status] || STATUS_PRESETS.INFORMATION;
   const isQuestion = status === STATUS_TYPES.QUESTION;
+  
   return (
-    <div className="ui-dialog-backdrop" onClick={onClose}>
+    <div className="ui-dialog-backdrop" onClick={onClose}>␊
       <div
         className="ui-dialog-container"
-        style={{ borderColor: preset.color }}
+        style={{ borderColor: preset.borderColor || preset.color }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* HEADER */}
         <div className="ui-dialog-header flex items-center gap-3">
-          <span className={`text-${preset.color}-600`}>
+          <span className={`ui-dialog-icon ${preset.textClass}`}>
             {preset.icon}
           </span>
-
-          <h2 className={`ui-dialog-title text-${preset.color}-600`}>
+          <h2 className={`ui-dialog-title ${preset.textClass}`}>
             {title || preset.title}
           </h2>
         </div>
 
-        {/* BODY */}
         <div className="ui-dialog-body">
           {children}
         </div>
@@ -50,7 +48,7 @@ export default function Dialog({
 
               <button
                 onClick={onConfirm}
-                className={`ui-dialog-confirm-btn bg-${preset.color}-600 text-white px-4 py-2 rounded`}
+                className={`ui-dialog-confirm-btn ${preset.buttonClass} text-white px-4 py-2 rounded`}
               >
                 {confirmText}
               </button>

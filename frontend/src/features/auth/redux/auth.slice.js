@@ -1,16 +1,38 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  user: null,
-  token: null,
-  loading: false,
-  error: null,
-  isAuthenticated: false,
+const getInitialState = () => {
+  try {
+    const storedToken = localStorage.getItem("token");
+    const storedUser = localStorage.getItem("user");
+
+    const parsedToken = storedToken ? JSON.parse(storedToken) : null;
+    const parsedUser = storedUser ? JSON.parse(storedUser) : null;
+
+    if (parsedToken) {
+      return {
+        user: parsedUser,
+        token: parsedToken,
+        loading: false,
+        error: null,
+        isAuthenticated: true,
+      };
+    }
+  } catch (error) {
+    console.error("Failed to hydrate auth state from storage", error);
+  }
+
+  return {
+    user: null,
+    token: null,
+    loading: false,
+    error: null,
+    isAuthenticated: false,
+  };
 };
 
 const authSlice = createSlice({
   name: "auth",
-  initialState,
+  initialState: getInitialState(),
   reducers: {
     authStart: (state) => {
       state.loading = true;
@@ -20,6 +42,7 @@ const authSlice = createSlice({
       state.loading = false;
       state.user = action.payload.user;
       state.token = action.payload.token;
+      state.error = null;
       state.isAuthenticated = Boolean(action.payload.token);
     },
     authFailure: (state, action) => {

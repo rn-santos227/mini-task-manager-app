@@ -34,6 +34,10 @@
   @apply bg-yellow-100 text-yellow-700;
 }
 
+.task-status-overdue {
+  @apply bg-red-100 text-red-700;
+}
+
 .task-actions {
   @apply flex items-center gap-2;
 }
