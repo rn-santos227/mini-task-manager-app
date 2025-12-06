@@ -1,5 +1,12 @@
 import "./index.css";
-import Spinner from "../Spinner";
+
+import DataTableEmpty from "./DataTableEmpty";
+import DataTableContent from "./DataTableContent";
+import DataTableLoading from "./DataTableLoading";
+
+function DataTableContainer({ children, className }) {
+  return <div className={`ui-table-container ${className}`}>{children}</div>;
+}
 
 export default function DataTable({
   columns = [],
@@ -8,49 +15,25 @@ export default function DataTable({
   emptyMessage = "No data available.",
   className = "",
 }) {
+  if (loading) {
+    return (
+      <DataTableContainer className={className}>
+        <DataTableLoading columns={columns} />
+      </DataTableContainer>
+    );
+  }
+
+  if (data.length === 0) {
+    return (
+      <DataTableContainer className={className}>
+        <DataTableEmpty columns={columns} emptyMessage={emptyMessage} />
+      </DataTableContainer>
+    );
+  }
+
   return (
-    <div className={`ui-table-container ${className}`}>
-      <table className="ui-table">
-        <thead>
-          <tr>
-            {columns.map((col) => (
-              <th key={col.key}>{col.label}</th>
-            ))}
-          </tr>
-        </thead>
-
-        <tbody>
-          {loading && (
-            <tr>
-              <td colSpan={columns.length}>
-                <div className="ui-table-loading">
-                  <Spinner size="sm" />
-                  <span>Loading…</span>
-                </div>
-              </td>
-            </tr>
-          )}
-
-          {!loading && data.length === 0 && (
-            <tr>
-              <td colSpan={columns.length}>
-                <div className="ui-table-empty">{emptyMessage}</div>
-              </td>
-            </tr>
-          )}
-
-          {!loading &&
-            data.map((row, index) => (
-              <tr key={index}>
-                {columns.map((col) => (
-                  <td key={col.key}>
-                    {col.render ? col.render(row[col.key], row) : row[col.key]}
-                  </td>
-                ))}
-              </tr>
-            ))}
-        </tbody>
-      </table>
-    </div>
+    <DataTableContainer className={className}>
+      <DataTableContent columns={columns} data={data} />
+    </DataTableContainer>
   );
 }
