@@ -6,6 +6,7 @@ import Login from "@/features/auth/pages/Login";
 import Register from "@/features/auth/pages/Register";
 import ProtectedRoute from "@/features/auth/ProtectedRoute";
 import Tasks from "@/features/tasks/pages/Tasks";
+import NotFoundPage from "@/features/misc/pages/NotFound";
 
 export default function AppRouter() {
   return (
@@ -39,6 +40,8 @@ export default function AppRouter() {
             </ProtectedRoute>
           }
         />
+
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );
