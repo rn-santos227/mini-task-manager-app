@@ -1,0 +1,23 @@
+.not-found-page {
+  @apply min-h-screen flex items-center justify-center bg-gray-50 px-4;
+}
+
+.not-found-card {
+  @apply w-full max-w-2xl shadow-md;
+}
+
+.not-found-content {
+  @apply space-y-4 text-center;
+}
+
+.not-found-title {
+  @apply text-3xl font-semibold text-gray-900;
+}
+
+.not-found-text {
+  @apply text-gray-600;
+}
+
+.not-found-actions {
+  @apply flex flex-col sm:flex-row gap-3 justify-center sm:justify-center;
+}
